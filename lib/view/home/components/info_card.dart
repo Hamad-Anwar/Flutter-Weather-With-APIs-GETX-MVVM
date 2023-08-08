@@ -34,29 +34,27 @@ class InfoCard extends StatelessWidget {
           Positioned(
               top: -10,
               left: 10,
-              child: Image.asset(
-                ImageAssets.nightRain,
+              child: Obx(()=>Image.asset(
+                controller.getImage(controller.currentIndex.value),
                 height: 150,
                 width: 170,
                 fit: BoxFit.fill,
-              )),
+              ))),
           Positioned(
             bottom: 50,
             left: 20,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  controller
-                      .model.value!.currentConditions!.conditions
-                      .toString(),
+                Obx(() => Text(
+                  controller.getCondition(),
                   style: const TextStyle(
                       height: 0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 23),
-                ),
-                SizedBox(height: 5,),
+                ),),
+                const SizedBox(height: 5,),
                 Text(
                   Utils.currentTime(),
                   style: TextStyle(
@@ -86,10 +84,8 @@ class InfoCard extends StatelessWidget {
                       // Adjust the stops to control the gradient area
                     ).createShader(bounds);
                   },
-                  child: Text(
-                    controller.model.value!.currentConditions!.temp
-                        .toInt()
-                        .toString(),
+                  child: Obx(() => Text(
+                    controller.getCurrentTemp(),
                     style: const TextStyle(
                       fontSize: 60,
                       height: 0,
@@ -97,15 +93,16 @@ class InfoCard extends StatelessWidget {
                       color:
                       Colors.white, // Initial color of the text
                     ),
-                  ),
+                  )),
+
                 ),
-                Text(
-                  'Feel like ${controller.model.value!.currentConditions!.feelslike}',
+                Obx(() => Text(
+                  'Feel like ${controller.getFeelLike()}',
                   style: const TextStyle(
                       height: 0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
-                ),
+                ),)
 
               ],
             ),

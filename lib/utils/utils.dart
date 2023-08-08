@@ -3,10 +3,11 @@ import 'package:intl/intl.dart';
 class Utils {
 
 
-  static Map<String,String> imageMap={
-    'Partially cloudy' : 'assets/images/sunRaint.png',
-    'Overcast' : 'assets/images/starCLear.png',
+  static Map<dynamic,String> imageMap={
+    'Partially cloudy' : 'assets/images/nightRain.png',
+    'Overcast' : 'assets/images/sunSlowRain.png',
     'Clear' : 'assets/images/wind.png',
+    null : 'assets/images/nightStatRain.png'
   };
 
   // formate date

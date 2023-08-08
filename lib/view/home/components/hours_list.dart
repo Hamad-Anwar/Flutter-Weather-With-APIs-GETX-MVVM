@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather/view_model/controllers/home_controller.dart';
-
-import '../../../res/images/image_assets.dart';
-import '../../../utils/utils.dart';
 class HoursList extends StatelessWidget {
   HoursList({super.key});
   final controller=Get.put(HomeController());
@@ -16,60 +13,53 @@ class HoursList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(vertical: 10),
         itemBuilder: (context, index) {
-          return Column(    // for ignoring parent height
-            children: [
-              Card(
-                elevation: 10,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                shadowColor : Utils.checkTime(controller.model.value!
-                      .days![0].hours![index].datetime) ? Colors.blue :Colors.grey.withOpacity(.5) ,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-                child: Container(
-                  height: 130,
-                  width: 80,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                      color: Utils.checkTime(controller.model.value!
-                          .days![0].hours![index].datetime)? Colors.blue: Colors.white,
+          return GestureDetector(
+            onTap: () => controller.setHour(index),
+            child: Column(    // for ignoring parent height
+              children: [
+                Obx(() => Card(
+                  elevation: 10,
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  shadowColor : controller.compareIndex(index) ? Colors.blue :Colors.white70,
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        Utils.formateTimeWithout(controller.model.value!
-                            .days![0].hours![index].datetime),
-                        style:  TextStyle(
-                          color:Utils.checkTime(controller.model.value!
-                              .days![0].hours![index].datetime) ? Colors.white :Colors.grey ,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Image.asset(
-                        Utils.imageMap[controller.model.value!.days![0].conditions.toString()]==null  ?
-                            ImageAssets.starts
-
-                            :Utils.imageMap[controller.model.value!.days![0].conditions.toString()]!
-                        ,
-                        height: 50,
-                        width: 50,
-                      ),
-                      Text(
-                        controller
-                            .model.value!.days![0].hours![index].temp
-                            .toInt()
-                            .toString(),
-                        style:  TextStyle(
-                            color:Utils.checkTime(controller.model.value!
-                                .days![0].hours![index].datetime) ? Colors.white :Colors.grey ,
+                  child: Obx(() => Container(
+                    height: 130,
+                    width: 80,
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                        color: controller.compareIndex(index)? Colors.blue: Colors.white70,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(() => Text(
+                          controller.getHour(index),
+                          style:  TextStyle(
+                            color:controller.compareIndex(index) ? Colors.white :Colors.grey ,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                          ),
+                        ),),
+                        Obx(() => Image.asset(
+                          controller.getImage(index),
+                          height: 50,
+                          width: 50,
+                        ),),
+                        Text(
+                          '${controller
+                              .model.value!.days![0].hours![index].temp
+                              .toInt()}\u00B0',
+                          style:  TextStyle(
+                              color:controller.compareIndex(index) ? Colors.white :Colors.grey ,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  )),
+                ),)
+              ],
+            ),
           );
         },
       ),

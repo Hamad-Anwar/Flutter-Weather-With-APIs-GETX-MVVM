@@ -20,7 +20,7 @@ class DaysController extends GetxController{
   }
 
   String getImage(int index){
-    return Utils.imageMap[homeController.model.value!.days![index].conditions]==null ? ImageAssets.sunHeavyRain :
+    return Utils.imageMap[homeController.model.value!.days![index].conditions]==null ? ImageAssets.nightStarRain :
     Utils.imageMap[homeController.model.value!.days![index].conditions]!;
   }
 

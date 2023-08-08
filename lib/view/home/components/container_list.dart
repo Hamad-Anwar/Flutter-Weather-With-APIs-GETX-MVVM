@@ -13,11 +13,13 @@ class ContainerList extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SmallContainer(text: '${controller.model.value!.currentConditions!.cloudcover.toInt()}%', image: ImageAssets.heavyRain),
-          SmallContainer(text : '${controller.model.value!.currentConditions!.windspeed.toInt()}km/h',image : ImageAssets.wind),
-          SmallContainer(text :'${controller.model.value!.currentConditions!.humidity.toInt().toString()}%', image :ImageAssets.sun),
+          Obx(() =>  SmallContainer(text: '${controller.getCloudOver()}%', image: ImageAssets.heavyRain),),
+          Obx(() => SmallContainer(text : '${controller.getWindSpeed()}km/h',image : ImageAssets.wind),),
+          Obx(() =>  SmallContainer(text :'${controller.getHumidity()}%', image :ImageAssets.sun),),
         ],
       ),
     );
   }
 }
+
+
