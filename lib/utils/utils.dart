@@ -15,6 +15,20 @@ class Utils {
     return formattedDate;
   }
 
+  
+  // extract date only
+  static String extractDate(String date){
+    DateTime dateTime = DateTime.parse(date);
+    String formattedDate = DateFormat('d').format(dateTime);
+    return formattedDate;
+  }
+
+  static String extractDay(String date){
+    DateTime dateTime = DateTime.parse(date);
+    String formattedDate = DateFormat('EEEE').format(dateTime);
+    return formattedDate.substring(0,3);
+  }
+
 
   // formate time with am/pm
   static String formateTime(String time) {
@@ -23,7 +37,7 @@ class Utils {
     String timeIn12HourFormat = dateFormat.format(dateTime);
     return timeIn12HourFormat;
   }
-
+  
   //current time
   static String currentTime() {
     DateFormat dateFormat = DateFormat('hh:mm a');

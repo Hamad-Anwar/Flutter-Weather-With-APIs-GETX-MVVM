@@ -6,6 +6,7 @@ import 'package:weather/view/home/components/app_bar.dart';
 import 'package:weather/view/home/components/container_list.dart';
 import 'package:weather/view/home/components/hours_list.dart';
 import 'package:weather/view/home/components/info_card.dart';
+import 'package:weather/view/next-days/next_14_days.dart';
 import 'package:weather/view_model/controllers/home_controller.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -65,26 +66,29 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'Today',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                    ),
-                    Spacer(),
-                    Text(
-                      'Next 7 Days >',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    )
-                  ],
+              GestureDetector(
+                onTap: () => Get.to( NextDays()),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Today',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
+                      ),
+                      Spacer(),
+                      Text(
+                        'Next 7 Days >',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      )
+                    ],
+                  ),
                 ),
               ),
               HoursList(),

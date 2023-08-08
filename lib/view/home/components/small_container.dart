@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 class SmallContainer extends StatelessWidget {
-  const SmallContainer(this.text, this.image, {super.key});
+  const SmallContainer({super.key,required this.text,required this.image, this.color,this.textColor});
   final String text;
   final String image;
+  final Color? color;
+  final Color? textColor;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,7 +13,7 @@ class SmallContainer extends StatelessWidget {
           height: 60,
           width: 60,
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(.1),
+            color:color ?? Colors.grey.withOpacity(.1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
@@ -24,7 +26,9 @@ class SmallContainer extends StatelessWidget {
         ),
         Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style:  TextStyle(fontWeight: FontWeight.bold,
+          color: textColor?? Colors.black
+          ),
         )
       ],
     );
