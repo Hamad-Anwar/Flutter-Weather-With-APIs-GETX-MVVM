@@ -4,6 +4,11 @@
 
 This Flutter weather application is designed to provide users with accurate weather information in an intuitive and user-friendly way. It fetches data from a weather API to display the current weather details, a complete 24-hour forecast, and a 14-day weather forecast. The app is built using the MVVM architecture and managed with the GetX state management library, ensuring a clean and maintainable codebase.
 
+## Screenshots
+
+<img src="demo.png">
+
+
 ## Features
 
 - Display current weather conditions including temperature, humidity, wind speed, and more.
@@ -16,10 +21,6 @@ This Flutter weather application is designed to provide users with accurate weat
 ## Architecture
 
 The app is built using the Model-View-ViewModel (MVVM) architecture. This design pattern separates the concerns of data, UI, and business logic, leading to a more modular and testable codebase. The app's architecture is further enhanced by GetX, a state management library that simplifies reactive programming and state transitions.
-
-## Screenshots
-
-<img src="demo.png">
 
 ## Getting Started
 
